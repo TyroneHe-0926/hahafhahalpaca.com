@@ -18,7 +18,7 @@ import { RamonePage } from './projects/ramone/ramone.component';
 import { TurtlePage } from './projects/turtle/turtle.component'
 import { SearchEngPage } from './projects/searcheng/searcheng.component';
 import { ContactPage } from './contact/contact.component';
-import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
+import { MeepoerPage } from './projects/meepoer/meepoer.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +33,13 @@ import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
     RamonePage,
     TurtlePage,
     SearchEngPage,
-    ContactPage
+    ContactPage,
+    MeepoerPage
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    AnimateOnScrollModule.forRoot(),
     RouterModule.forRoot([
       { path: 'home', component: HomePage },
       { path: 'intro', component: IntroPage },
@@ -51,6 +51,7 @@ import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
       { path: 'projects/turtle', component: TurtlePage },
       { path: 'projects/searcheng', component:SearchEngPage},
       { path: 'contact', component: ContactPage },
+      { path: 'projects/meepoer', component: MeepoerPage},
       { path: '', redirectTo: '/home', pathMatch: 'full' }
     ], { useHash: true })
   ],

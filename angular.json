@@ -28,7 +28,9 @@
               "src/styles.css",
               "node_modules/aos/dist/aos.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/marked.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -122,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "hahafhaha"
+  "defaultProject": "hahafhaha",
+  "cli": {
+    "analytics": "0c203f27-3f29-4517-aa68-09b499e5e0ed"
+  }
 }

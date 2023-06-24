@@ -1,4 +1,3 @@
-import { AotSummaryResolver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import AOS from 'aos';
 

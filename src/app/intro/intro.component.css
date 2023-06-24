@@ -4,6 +4,7 @@
 
 .text-container{
     display: flex;
+    margin-top: 3vh;
     margin-right: auto;
     margin-left: auto;
     flex: 0 auto;
@@ -27,7 +28,7 @@
 
 .p-content{
     font-size: 25px;
-    line-height: 30px;
+    line-height: 40px;
 }
 
 .img-container{
