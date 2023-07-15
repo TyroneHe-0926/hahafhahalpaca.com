@@ -22,7 +22,6 @@
     "angular-scroll-animate": "^0.9.9",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.0",
-    "ng2-animate-on-scroll": "^2.2.1",
     "openai-api": "^1.2.6",
     "rxjs": "~7.8.1",
     "tslib": "^2.0.0",
