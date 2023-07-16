@@ -36,7 +36,7 @@
         Which transitioned into building a social media post generator late on.
         <br />
         <br />
-        Imagine you just built a great product and now you want to advertise it
+        Imagine that you just built a great product and now you want to advertise it
         on different social media platforms, instead of having someone create 10
         different social media accounts to showcase your product, Meepoer can do
         that for you within seconds.
@@ -100,154 +100,43 @@
     <h1 class="p-content" style="font-size: 30px" data-aos="zoom-in-up">
       More on the technical side
     </h1>
+    <br/>
+    <h2 class="p-content" data-aos="zoom-in-up">
+      <b><strong>Text to Post Generation: </strong></b> 
+    </h2>
     <h3 class="p-content" data-aos="zoom-in-up">
-      Autonomous period:
-      <br />
-      <br />
-      (1) Corresponds the beacons' color with your teams' by pressing the
-      correct button.
-      <br />
-      <br />
-      (2) Shoot the small balls through the hoop(vortex), touch the cap balls,
-      push the small balls into designated areas.
-      <br />
-      <br />
-      (3) Park the robot onto the corner triangular ramp.
-      <br />
-      <br />
-      Controll period:
-      <br />
-      <br />
-      (1) Shoot the smalls through the hoop(center vortex) or corner ramp.
-      <br />
-      <br />
-      (2) Capture or recapture the beacons.
-      <br />
-      <br />
-      (3) Hold up the cap ball, or even better, put it on top of the center
-      vortex.
-      <br />
-      <br />
-      Here is a picture illustration of the whole field.
+      Text to post generation has a relatively more straightforward implementation than post to post generation, so I wanna start by talking about text to post first.
+      <br/>
+      <br/>
+      <ol>
+        <li>Web scraping for data. Here we have scraped around 110G of Twitter posts, and 115G of Reddit posts, with their respective provided API. 
+          <br/><br/>
+          We have also scraped around 89G of Instagram posts using the open source repo at
+          <a href="https://github.com/althonos/InstaLooter">https://github.com/althonos/InstaLooter</a>.
+          <br/>
+          I think it is worth mentioning that among all three platforms, we felt like Instagram's post quality tops the chart, we stopped at 89G only because our accounts are banned at that point.
+        </li>
+        <br/>
+        <li>All scraped data will be uploaded to S3 in the format of a JSON file as well as its corresponding post images. The JSON file specified the property mapping to be automatically indexed into Elasticsearch, contains meta information such as <code>post_id</code>, <code>post_image_ar</code>, etc. and information like <code>hashtags</code>, <code>likes</code>, <code>text</code>, etc.
+          <br/><br/>
+          We also prioritized our scraping with BFS over DFS (scraping more hashtags/categories over scraping lots of post within a certain category). 
+        </li>
+        <br/>
+        <li>The actual generation for TTP is rather simple. When user inputs a text prompt, we initiate a full text search task to our Redis Queue (will be explained later, just a task queue).
+          <br/>
+          After we matched the top posts stored in ES (target field is post's text), we could start finding more posts similar to those if the user wants.
+          <br/><br/>
+          After our ES hits return, it's time to do a bit of some prompt engineering (mainly how we communicate with GPT-3). We wanted GPT-3 to do some simple tasks such as summarizing and paraphrasing the post's content and description, in different ways, so that we can display a variety of contents to the users.
+        </li>
+        <br/>
+        <li>We pretty much have everything we need for a generated post, we will now assemble the image, description, hashtags, text into an actual post and display to our front-end in the format of a post card. Watch a demo video of our TTP process here ↓
+        </li>
+        <br/>
+      </ol>
     </h3>
     <div class="img-container" data-aos="zoom-in-down">
       <img
         src="https://hahafhahalpaca-1305808520.cos.ap-shanghai.myqcloud.com/2016-ftc-field.jpeg"
-      />
-    </div>
-  </article>
-</div>
-
-<div
-  class="text-container read"
-  style="background-color: #a2978f"
-  data-aos="zoom-in-up"
->
-  <article class="read-wrap">
-    <h3 class="p-content" data-aos="zoom-in-up">
-      This was our team's first season into FTC. We were still fumbling around
-      and figuring/trying out a lot of things.
-      <br />
-      <br />
-      It was also the very first time I realized, besides the technical part,
-      there are much more things that I must consider as a leader.
-      <br />
-      <br />
-      I started developing skills such as time management, budget management,
-      task management.
-      <br />
-      <br />
-      The most painful lesson I learned is probably how to properly deal with
-      arguements. Small conflicts are inevitable in a long term group
-      colloboration. But if we don't sort these conflicts out in time, they will
-      build up, and one day it might just be detrimental issue.
-      <br />
-      <br />
-      By detrimental issue, I mean the "team is completely falling apart and
-      disbanding" kind of issue.
-    </h3>
-    <div class="img-container" data-aos="zoom-in-down">
-      <img
-        src="https://hahafhahalpaca-1305808520.cos.ap-shanghai.myqcloud.com/wally-jeck.jpeg"
-      />
-    </div>
-  </article>
-</div>
-
-<div class="text-container read" style="margin-top: 30px" data-aos="zoom-in-up">
-  <article class="read-wrap">
-    <h1 class="p-content" style="font-size: 30px" data-aos="zoom-in-up">
-      2017 FTC Relic Recovery
-    </h1>
-    <h3 class="p-content" data-aos="zoom-in-up">
-      Autonomous period:
-      <br />
-      <br />
-      (1) Knock down the correct particle corresponding to your team color.
-      <br />
-      <br />
-      (2) Decode the encrypted message hidden in the pictures, and place a glpyh
-      in the grid with the correct column corresponding to the encrypted
-      message.
-      <br />
-      <br />
-      (3) Park the robot into the triangular area under the grid.
-      <br />
-      <br />
-      Controll period:
-      <br />
-      <br />
-      (1) Put glpyhs into the grid. Completed rows and columns will give extra
-      points. If the whole grid is filled with one of the pre-designed pattern,
-      we get full point.
-      <br />
-      <br />
-      (2) Grab the beacon and drop onto the recovery zone outside of the arena.
-      The robot itself cannot leave the arena. Full point will be given if the
-      relic is placed upright on the furthest zone.
-      <br />
-      <br />
-      (3) Balance the robot on the balancing zone.
-      <br />
-      <br />
-      Here is a picture illustration of the whole field.
-    </h3>
-    <div class="img-container" data-aos="zoom-in-down">
-      <img
-        src="https://hahafhahalpaca-1305808520.cos.ap-shanghai.myqcloud.com/2017-ftc-field.jpeg"
-      />
-    </div>
-  </article>
-</div>
-
-<div
-  class="text-container read"
-  style="background-color: #a2978f; margin-top: 30px"
-  data-aos="zoom-in-up"
->
-  <article class="read-wrap">
-    <h3 class="p-content" data-aos="zoom-in-up">
-      Throughout this season, we expanded our team, did a lot more community
-      outreaches, started keeping our engineering notebook.
-      <br />
-      <br />
-      We were also awarded the Rockwell Collins Innovate Award during the
-      provincial championship.
-      <br />
-      <br />
-      I was pretty proud of the team throughout the season, I feel like we
-      accomplished a lot. It was really fun we go to Victoria for tournament
-      everytime, I can still remember the monsters we were chugging down the
-      night before championship.
-    </h3>
-    <div class="img-container" data-aos="zoom-in-down">
-      <img
-        src="https://hahafhahalpaca-1305808520.cos.ap-shanghai.myqcloud.com/award-on-stage.jpeg"
-      />
-    </div>
-    <div class="img-container" data-aos="zoom-in-down">
-      <img
-        src="https://hahafhahalpaca-1305808520.cos.ap-shanghai.myqcloud.com/award-ins.jpg"
       />
     </div>
   </article>
