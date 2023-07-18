@@ -19,6 +19,7 @@ import { TurtlePage } from './projects/turtle/turtle.component'
 import { SearchEngPage } from './projects/searcheng/searcheng.component';
 import { ContactPage } from './contact/contact.component';
 import { MeepoerPage } from './projects/meepoer/meepoer.component';
+import { CS247Page } from './projects/cs247/cs247.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MeepoerPage } from './projects/meepoer/meepoer.component';
     TurtlePage,
     SearchEngPage,
     ContactPage,
-    MeepoerPage
+    MeepoerPage,
+    CS247Page
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { MeepoerPage } from './projects/meepoer/meepoer.component';
       { path: 'projects/searcheng', component:SearchEngPage},
       { path: 'contact', component: ContactPage },
       { path: 'projects/meepoer', component: MeepoerPage},
-      { path: '', redirectTo: '/home', pathMatch: 'full' }
+      { path: 'projects/cs247', component: CS247Page},
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
     ], { useHash: true })
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
